@@ -1,4 +1,4 @@
-// LOGIN FUNCTION
+// LOGIN
 function login() {
   const email = document.getElementById("email").value;
 
@@ -16,7 +16,7 @@ function loadUser() {
   const email = localStorage.getItem("userEmail");
 
   if (!email) {
-    window.location.href = "login.html";
+    window.location.href = "index.html";   // 🔥 FIX
     return;
   }
 
@@ -27,19 +27,19 @@ function loadUser() {
 // LOGOUT
 function logout() {
   localStorage.removeItem("userEmail");
-  window.location.href = "login.html";
+  window.location.href = "index.html";     // 🔥 FIX
 }
 
-// CHARTS (DUMMY DATA)
+// CHARTS
 function loadCharts() {
 
   new Chart(document.getElementById("patientChart"), {
     type: "line",
     data: {
-      labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
+      labels: ["Jan","Feb","Mar","Apr","May","Jun"],
       datasets: [{
         label: "Patients",
-        data: [120, 190, 300, 250, 420, 500],
+        data: [120,190,300,250,420,500],
         borderWidth: 2
       }]
     }
@@ -48,9 +48,9 @@ function loadCharts() {
   new Chart(document.getElementById("diseaseChart"), {
     type: "pie",
     data: {
-      labels: ["Diabetes", "Heart", "BP", "Covid", "Other"],
+      labels: ["Diabetes","Heart","BP","Covid","Other"],
       datasets: [{
-        data: [30, 20, 25, 15, 10]
+        data: [30,20,25,15,10]
       }]
     }
   });
@@ -58,10 +58,10 @@ function loadCharts() {
   new Chart(document.getElementById("doctorChart"), {
     type: "bar",
     data: {
-      labels: ["Cardiology", "Neurology", "Orthopedic", "General"],
+      labels: ["Cardiology","Neurology","Orthopedic","General"],
       datasets: [{
         label: "Doctors Available",
-        data: [8, 5, 6, 10]
+        data: [8,5,6,10]
       }]
     }
   });
