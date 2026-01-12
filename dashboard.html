@@ -15,14 +15,17 @@
   <div class="sidebar">
     <h2>HealthCare</h2>
     <ul>
-      <li onclick="showDashboard()">Dashboard</li>
-      <li onclick="showPatients()">Patients</li>
-      <li onclick="showDoctors()">Doctors</li>
-      <li onclick="showSuggestions()">Suggestions</li>
+      <li>Dashboard</li>
+      <li>Patients</li>
+      <li>Doctors</li>
+      <li>Analytics</li>
+      <li>Suggestions</li>
+      <li>Reports</li>
+      <li>Settings</li>
     </ul>
   </div>
 
-  <!-- Main -->
+  <!-- Main Content -->
   <div class="main">
 
     <!-- Topbar -->
@@ -31,8 +34,31 @@
       <button onclick="logout()">Logout</button>
     </div>
 
-    <!-- Dynamic Content -->
-    <div id="content"></div>
+    <!-- Stats Cards -->
+    <div class="stats">
+      <div class="card">Total Patients<br><strong>520</strong></div>
+      <div class="card">Total Doctors<br><strong>29</strong></div>
+      <div class="card">Appointments Today<br><strong>68</strong></div>
+      <div class="card">Active Users<br><strong>143</strong></div>
+    </div>
+
+    <!-- Charts -->
+    <div class="charts">
+      <div class="chart-box">
+        <h3>Patient Growth</h3>
+        <canvas id="patientChart"></canvas>
+      </div>
+
+      <div class="chart-box">
+        <h3>Disease Distribution</h3>
+        <canvas id="diseaseChart"></canvas>
+      </div>
+
+      <div class="chart-box">
+        <h3>Doctor Availability</h3>
+        <canvas id="doctorChart"></canvas>
+      </div>
+    </div>
 
   </div>
 </div>
