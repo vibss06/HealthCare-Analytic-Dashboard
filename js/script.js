@@ -1,9 +1,9 @@
-/* ---------- LOGIN ---------- */
+// LOGIN FUNCTION
 function login() {
   const email = document.getElementById("email").value;
 
   if (email === "") {
-    alert("Enter email");
+    alert("Please enter email");
     return;
   }
 
@@ -11,154 +11,57 @@ function login() {
   window.location.href = "dashboard.html";
 }
 
-/* ---------- LOAD USER ---------- */
+// LOAD USER ON DASHBOARD
 function loadUser() {
   const email = localStorage.getItem("userEmail");
+
   if (!email) {
     window.location.href = "login.html";
     return;
   }
 
   document.getElementById("userEmail").innerText = email;
-  showDashboard();
-}
-
-/* ---------- LOGOUT ---------- */
-function logout() {
-  localStorage.clear();
-  window.location.href = "login.html";
-}
-
-/* ---------- DUMMY DATA ---------- */
-const patients = [
-  { name: "Rahul Sharma", age: 45, disease: "Diabetes", status: "Active" },
-  { name: "Anita Verma", age: 32, disease: "BP", status: "Active" },
-  { name: "Amit Singh", age: 60, disease: "Heart", status: "Critical" },
-  { name: "Neha Patil", age: 27, disease: "Fever", status: "Recovered" }
-];
-
-const doctors = [
-  { name: "Dr. Mehta", spec: "Cardiologist", available: "Yes" },
-  { name: "Dr. Rao", spec: "Neurologist", available: "No" },
-  { name: "Dr. Khan", spec: "Orthopedic", available: "Yes" },
-  { name: "Dr. Joshi", spec: "General Physician", available: "Yes" }
-];
-
-/* ---------- DASHBOARD ---------- */
-function showDashboard() {
-  document.getElementById("content").innerHTML = `
-    <div class="stats">
-      <div class="card">Total Patients<br><strong>${patients.length}</strong></div>
-      <div class="card">Total Doctors<br><strong>${doctors.length}</strong></div>
-      <div class="card">Appointments Today<br><strong>68</strong></div>
-      <div class="card">Active Users<br><strong>143</strong></div>
-    </div>
-
-    <div class="charts">
-      <div class="chart-box">
-        <h3>Patient Growth</h3>
-        <canvas id="patientChart"></canvas>
-      </div>
-
-      <div class="chart-box">
-        <h3>Disease Distribution</h3>
-        <canvas id="diseaseChart"></canvas>
-      </div>
-
-      <div class="chart-box">
-        <h3>Doctor Availability</h3>
-        <canvas id="doctorChart"></canvas>
-      </div>
-    </div>
-  `;
-
   loadCharts();
 }
 
-/* ---------- PATIENTS ---------- */
-function showPatients() {
-  let rows = patients.map(p =>
-    `<tr>
-      <td>${p.name}</td>
-      <td>${p.age}</td>
-      <td>${p.disease}</td>
-      <td>${p.status}</td>
-    </tr>`
-  ).join("");
-
-  document.getElementById("content").innerHTML = `
-    <h2>Patients</h2>
-    <table>
-      <tr><th>Name</th><th>Age</th><th>Disease</th><th>Status</th></tr>
-      ${rows}
-    </table>
-  `;
+// LOGOUT
+function logout() {
+  localStorage.removeItem("userEmail");
+  window.location.href = "login.html";
 }
 
-/* ---------- DOCTORS ---------- */
-function showDoctors() {
-  let rows = doctors.map(d =>
-    `<tr>
-      <td>${d.name}</td>
-      <td>${d.spec}</td>
-      <td>${d.available}</td>
-    </tr>`
-  ).join("");
-
-  document.getElementById("content").innerHTML = `
-    <h2>Doctors</h2>
-    <table>
-      <tr><th>Name</th><th>Specialization</th><th>Available</th></tr>
-      ${rows}
-    </table>
-  `;
-}
-
-/* ---------- SUGGESTIONS ---------- */
-function showSuggestions() {
-  document.getElementById("content").innerHTML = `
-    <h2>Health Suggestions</h2>
-    <ul>
-      <li>Drink enough water daily</li>
-      <li>Regular BP and sugar checkups</li>
-      <li>Exercise at least 30 minutes</li>
-      <li>Consult doctor if symptoms persist</li>
-    </ul>
-  `;
-}
-
-/* ---------- CHARTS ---------- */
+// CHARTS (DUMMY DATA)
 function loadCharts() {
 
-  new Chart(patientChart, {
+  new Chart(document.getElementById("patientChart"), {
     type: "line",
     data: {
-      labels: ["Jan","Feb","Mar","Apr","May","Jun"],
+      labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
       datasets: [{
         label: "Patients",
-        data: [120,200,280,350,420,500],
+        data: [120, 190, 300, 250, 420, 500],
         borderWidth: 2
       }]
     }
   });
 
-  new Chart(diseaseChart, {
+  new Chart(document.getElementById("diseaseChart"), {
     type: "pie",
     data: {
-      labels: ["Diabetes","BP","Heart","Fever"],
+      labels: ["Diabetes", "Heart", "BP", "Covid", "Other"],
       datasets: [{
-        data: [30,25,20,25]
+        data: [30, 20, 25, 15, 10]
       }]
     }
   });
 
-  new Chart(doctorChart, {
+  new Chart(document.getElementById("doctorChart"), {
     type: "bar",
     data: {
-      labels: ["Cardio","Neuro","Ortho","General"],
+      labels: ["Cardiology", "Neurology", "Orthopedic", "General"],
       datasets: [{
-        label: "Doctors",
-        data: [3,2,2,4]
+        label: "Doctors Available",
+        data: [8, 5, 6, 10]
       }]
     }
   });
