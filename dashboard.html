@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<link rel="stylesheet" href="css/style.css">
-
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
   <title>Dashboard | Healthcare Analytics</title>
   <link rel="stylesheet" href="css/style.css">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
+
 <body onload="loadUser()">
 
 <div class="container">
@@ -15,9 +15,28 @@
   <div class="sidebar">
     <h2>HealthCare</h2>
     <ul>
-      <li>Dashboard</li>
-      <li>Patients</li>
-      <li>Doctors</li>
-      <li>Analytics</li>
-      <li>Suggestions</li>
-      <li>Reports</li>
+      <li onclick="showDashboard()">Dashboard</li>
+      <li onclick="showPatients()">Patients</li>
+      <li onclick="showDoctors()">Doctors</li>
+      <li onclick="showSuggestions()">Suggestions</li>
+    </ul>
+  </div>
+
+  <!-- Main -->
+  <div class="main">
+
+    <!-- Topbar -->
+    <div class="topbar">
+      <span id="userEmail"></span>
+      <button onclick="logout()">Logout</button>
+    </div>
+
+    <!-- Dynamic Content -->
+    <div id="content"></div>
+
+  </div>
+</div>
+
+<script src="js/script.js"></script>
+</body>
+</html>
